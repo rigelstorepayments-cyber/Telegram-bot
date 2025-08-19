@@ -1,3 +1,5 @@
+require('dotenv').config(); // <- Yeh line sabse upr honi chahiye
+
 const { Telegraf } = require('telegraf');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -8,7 +10,6 @@ bot.on('chat_join_request', async (ctx) => {
     const userId = ctx.chatJoinRequest.from.id;
 
     await ctx.telegram.approveChatJoinRequest(chatId, userId);
-
     console.log(`Approved join request for user ${userId} in chat ${chatId}`);
   } catch (error) {
     console.error('Error approving join request:', error);
